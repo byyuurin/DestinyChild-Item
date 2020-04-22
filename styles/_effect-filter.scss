@@ -1,0 +1,91 @@
+.effect-filter {
+  position: relative;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
+  min-width: 100%;
+  max-width: 100%;
+  border: 4px solid mix($--primary, transparent, 50%);
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.75);
+
+  .app-container {
+    width: 100vh;
+  }
+
+  &__action {
+    position: absolute;
+    right: 1em;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.3s, transform 0.3s;
+
+    &:hover {
+      opacity: 1;
+      transform: rotate(-45deg);
+    }
+    &:active {
+      transform: scale(1.1) rotate(-45deg);
+    }
+
+    .app-icon {
+      width: 2em;
+    }
+  }
+
+  &__item {
+    & + & {
+      margin-top: 0.5em;
+    }
+    &-label {
+      padding: 0.25em 0;
+      color: mix($--light, transparent, 50%);
+    }
+  }
+
+  &-option {
+    margin: .25em .5em .25em 0;
+    padding: 0 0.75em 0 0.25em;
+    display: inline-flex;
+    align-items: center;
+    font-size: 1.25em;
+    line-height: 2.25rem;
+    background-color: lighten($--dark, 15%);
+    border-radius: 8px;
+    cursor: pointer;
+
+    &__checkbox {
+      display: inline-block;
+      width: 1.5em;
+      height: 1em;
+      vertical-align: middle;
+      background: url(../assets/icon-checkbox-off.png) center top / auto 100% no-repeat;
+    }
+
+    &__label {
+      display: inline-block;
+      color: mix($--primary, transparent, 25%);
+      text-shadow: 2px 2px 6px $--dark;
+    }
+
+    input[type=checkbox] {
+      display: none;
+
+      &:checked ~ .effect-filter-option {
+        &__checkbox {
+          background-image: url(../assets/icon-checkbox-on.png);
+        }
+        &__label {
+          color: inherit;
+        }
+      }
+      &:not(:checked) ~ .effect-filter-option {
+        &__label {
+          .effect-level {
+            color: mix($--primary, transparent, 25%);
+          }
+        }
+      }
+    }
+  }
+}

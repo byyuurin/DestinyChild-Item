@@ -1,0 +1,143 @@
+$--effect-list-base-color: mix($--light, transparent, 80%);
+$--effect-level-e: #afafaf;
+$--effect-level-d: #336e0f;
+$--effect-level-c: #ef860f;
+$--effect-level-b: #9fae30;
+$--effect-level-a: #3f4df0;
+$--effect-level-s: #a309df;
+
+.effect-list {
+  padding: 0 8px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  color: $--effect-list-base-color;
+  background-color: mix($--dark, transparent, 25%);
+
+  &__header {
+    margin-bottom: 4px;
+    padding-right: 16px;
+    font-size: 0.85em;
+    .effect-list {
+      &__item {
+        line-height: 2;
+        font-weight: 600;
+        border-bottom: 2px solid $--effect-list-base-color;
+
+        &-text {
+          line-height: 32px;
+        }
+      }
+    }
+  }
+
+  &__content {
+    padding-right: 8px;
+    height: 0;
+    flex-grow: 1;
+    overflow-y: scroll;
+  }
+
+  &__filter {
+    cursor: pointer;
+  }
+
+  &__group {
+    &-list {
+      margin-bottom: 20px;
+      border-radius: 4px;
+      overflow: hidden;
+      
+      &:empty {
+        display: none;
+      }
+
+      &:not(:empty) {
+        &:before {
+          content: attr(data-title);
+          display: block;
+          padding: 1em 4px;
+          font-size: 2em;
+        }
+      }
+    }
+  }
+
+  &__item {
+    display: flex;
+    width: 100%;
+
+    &.effect-level {
+      &-E {
+        background-color: mix($--effect-level-e, transparent, 12.5%);
+      }
+      &-D {
+        background-color: mix($--effect-level-d, transparent, 12.5%);
+      }
+      &-C {
+        background-color: mix($--effect-level-c, transparent, 12.5%);
+      }
+      &-B {
+        background-color: mix($--effect-level-b, transparent, 12.5%);
+      }
+      &-A {
+        background-color: mix($--effect-level-a, transparent, 12.5%);
+      }
+      &-S {
+        background-color: mix($--effect-level-s, transparent, 12.5%);
+      }
+    }
+
+    &-text {
+      padding: 8px 4px;
+      min-width: 80px;
+      line-height: 1.5;
+      text-shadow: 0 0 2px $--dark;
+
+      &:nth-child(1) {
+        text-align: center;
+      }
+      &:nth-child(2) {
+        flex-grow: 1;
+      }
+      &:nth-child(3),
+      &:nth-child(4) {
+        text-align: center;
+      }
+    }
+  }
+
+  .text-translate {
+    font-weight: 600;
+  }
+  .text-template {
+    font-size: 0.75em;
+    color: mix($--effect-list-base-color, transparent, 80%);
+  }
+}
+
+.effect-level {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1.5em;
+  text-shadow: 2px 2px 6px $--dark;
+  &--E {
+    color: $--effect-level-e;
+  }
+  &--D {
+    color: $--effect-level-d;
+  }
+  &--C {
+    color: $--effect-level-c;
+  }
+  &--B {
+    color: $--effect-level-b;
+  }
+  &--A {
+    color: $--effect-level-a;
+  }
+  &--S {
+    color: $--effect-level-s;
+  }
+}

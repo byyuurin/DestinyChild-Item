@@ -1,0 +1,25 @@
+@font-face {
+  font-family: app-font;
+  src: url(../assets/font/jf-openhuninn-1.0.ttf);
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  color: $--primary;
+  font-family: app-font, Arial, Helvetica, sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  margin:4px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: mix($--primary, transparent, 80%);
+}

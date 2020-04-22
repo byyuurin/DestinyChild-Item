@@ -1,0 +1,40 @@
+.app-icon {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background: center center / cover no-repeat transparent;
+  vertical-align: middle;
+  overflow: hidden;
+
+  &-demon {
+    background-image: url(../assets/icon-demon.png);
+  }
+
+  &-star-on {
+    background-image: url(../assets/icon-star-on.png);
+  }
+
+  &-star-off {
+    background-image: url(../assets/icon-star-off.png);
+  }
+
+  &-talk {
+    background-image: url(../assets/icon-talk.png);
+  }
+
+  &-config {
+    background-image: url(../assets/icon-config.png);
+  }
+
+  &-refresh {
+    background-image: url(../assets/icon-refresh.png);
+  }
+
+  &-list {
+    background-image: url(../assets/icon-list.png);
+  }
+
+  &-equipment {
+    background-image: url(../assets/icon-equipment.png);
+  }
+}

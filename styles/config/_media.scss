@@ -1,0 +1,17 @@
+$--width-xs: 425px;
+$--width-sm: 767px;
+$--width-md: 997px;
+$--width-lg: 1199px;
+$--width-xl: 1920px;
+
+.app-container {
+  height: 100%;
+  overflow: hidden;
+}
+
+@media (min-width: $--width-md) {
+  .app-container {
+    margin: 0 auto;
+    max-width: 800px;
+  }
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>裝備</title>
+  <link rel="stylesheet" href="./css/style.min.css">
+</head>
+
+<body>
+  <div id="app" class="app-layout" :class="{'app-layout--waiting': dialogVisible}" @click.self="handleCloseDialog">
+    <div class="app-layout__header">
+      <div class="app-layout__header-content">
+        <div class="app-tabs">
+          <div class="app-container">
+            <div class="app-tabs__wrapper">
+              <div class="app-tabs__pane" :class="{ 'app-tabs__pane--active': activePane === 'demon' }"
+                @click="handlePaneClick('demon')">
+                <span class="app-icon app-icon-demon"></span>
+              </div>
+              <div class="app-tabs__pane" :class="{ 'app-tabs__pane--active': activePane === 'equipment' }"
+                @click="handlePaneClick('equipment')">
+                <span class="app-icon app-icon-equipment"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-layout__body">
+      <div class="app-container">
+        <!-- pane-demon -->
+        <div v-if="activePane === 'demon'" class="effect-list">
+          <div class="effect-list__header">
+            <div class="effect-list__item">
+              <div class="effect-list__item-text">
+                <a class="effect-list__filter" @click.prevent="handleOpenFilter">
+                  <span class="app-icon" :class="filterEnabled ? 'app-icon-star-on' : 'app-icon-star-off'"></span>
+                </a>
+              </div>
+              <div class="effect-list__item-text">效果描述</div>
+            </div>
+          </div>
+          <div class="effect-list__content">
+            <div class="effect-list__group" v-for="(type, tIndex) in typeLabel" :key="'type-' + tIndex">
+              <div class="effect-list__group-list" v-for="(slot, sIndex) in slotLabel" :key="'slot-' + sIndex"
+                :data-title="type+slot">
+                <div :class="'effect-list__item effect-level-' + item.level"
+                  v-for="(item, index) in pickEffectList(tIndex, sIndex)" :key="index">
+                  <div class="effect-list__item-text">
+                    <span :class="'effect-level effect-level--' + item.level">{{ item.level }}</span>
+                  </div>
+                  <div class="effect-list__item-text">
+                    <div class="text-translate">{{ effectDesc(item, true) }}</div>
+                    <div class="text-template">{{ effectDesc(item) }}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="app-layout__footer"></div>
+    <!-- filter -->
+    <div class="app-layout__dialog">
+      <div class="app-container">
+        <div class="effect-filter">
+          <div class="effect-filter__action" @click="handleFilterReset">
+            <span class="app-icon app-icon-refresh"></span>
+          </div>
+          <div class="effect-filter__item">
+            <div class="effect-filter__item-label">裝備類型</div>
+            <div class="effect-filter__item-options">
+              <label class="effect-filter-option" v-for="(label, index) in typeLabel" :key="'type-' + index">
+                <input type="checkbox" v-model="filterOption.type" :value="index" />
+                <span class="effect-filter-option__checkbox"></span>
+                <span class="effect-filter-option__label">{{ label }}</span>
+              </label>
+            </div>
+          </div>
+          <div class="effect-filter__item">
+            <div class="effect-filter__item-label">擴充位置</div>
+            <div class="effect-filter__item-options">
+              <label class="effect-filter-option" v-for="(label, index) in slotLabel" :key="'slot-' + index">
+                <input type="checkbox" v-model="filterOption.slot" :value="index" />
+                <span class="effect-filter-option__checkbox"></span>
+                <span class="effect-filter-option__label">位置{{ label }}</span>
+              </label>
+            </div>
+          </div>
+          <div class="effect-filter__item">
+            <div class="effect-filter__item-label">稀有度</div>
+            <div class="effect-filter__item-options">
+              <label class="effect-filter-option" v-for="(label, index) in levelLabel" :key="'level-' + index">
+                <input type="checkbox" v-model="filterOption.level" :value="label" />
+                <span class="effect-filter-option__checkbox"></span>
+                <span class="effect-filter-option__label">
+                  <span :class="'effect-level effect-level--' + label">{{ label }}</span>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.js'></script>
+  <script src="./scripts/app.js"></script>
+</body>
+
+</html>
